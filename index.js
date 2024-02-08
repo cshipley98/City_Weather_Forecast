@@ -9,3 +9,27 @@ forcastWeather = document.querySelector("#forecast-weather");
 citySearchName = document.querySelector("#city-search-term");
 cityList = document.querySelector("#city-list");
 clearHistoryBtn = document.querySelector("#clear-history-btn");
+
+
+//function to handle city submit
+var formSub,itHandler = function(event){
+    //prevent page from refresh
+    event.preventDefault();
+
+    //get value from input element 
+    var cityName = cityNameInput.value.trim();
+
+    if(cityName){
+        //get daily weather
+        getDailyWeather(cityName);
+        //get forecast weather
+        getForecastWeatjer(cityName);
+        saveSearch();
+
+
+
+    } else{
+        alert("Please enter a City Name");
+    }
+}
+
