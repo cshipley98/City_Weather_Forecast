@@ -52,6 +52,30 @@ var getDailyWeather = function(cityName){
                     //add weather icon next to name in header
                     weatherIcon = document.querySelector("#weather-icon")
                     weatherIcon.src = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
+
+                   
+                    //add temp to dom
+                    temp = documnent.querySelector("#temperature");
+                    temp.innerHTML = "Temperature: " + k2f(data.main.temp) + "&#176;" + "F";
+
+                    //add humidity do dom
+                    humidity = documnent.querySelector("#humidity");
+                    humidity.innerHTML = "Humidity: " + data.main.humidity + "%";
+
+                    //add wind to dom
+                    wind = documnent.querySelector("#wind");
+                    wind.innerHTML = "wind: " + data.main.wind.speed + "MPH";
+
+                    //get IV index
+                    let lat = data.coord.lat;
+                    let lon = data.coord.lon;
+                    let UVurl = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + lat + "&lon=" + lon +  "&appid=" + apiKey;
+                    fetch(UVurl)
+                        .then(function(response){
+                            response.json().then(function(data){
+
+                                // add IV index to dom
+                                UV
                 }
                 
                 )
