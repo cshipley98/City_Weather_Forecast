@@ -74,13 +74,26 @@ var getDailyWeather = function(cityName){
                         .then(function(response){
                             response.json().then(function(data){
 
-                                // add IV index to dom
-                                UV
-                }
+                                // add UV index to dom
+                                UVindex = document.querySelector("#UV-index")
+                                UVindex.innerHTML = "UV-index: + data[0].value";
+
+                                //remove any previous class
+                                UVindex.className = '';
+
+                                //uv index is favorable, show green
+                                if (data[0].value < 4){
+                                    UVindex.classList.add("bg-success", "text-light", "p-1");
+                                }
+                                // uv index is moderate, show yellow
+                                else if(data[0].value < 8){
+                                    UVindex.classList.add("bg-warning", "text-light", "p-1")
+                                }
+                                //UV index is severse, show red
+                                else {
+                                    UVindex.classList.add("bg-danger", "text-ligjt", "p-1");
+                                }
+                })}
                 
-                )
+                )});
             }
-        }
-        
-        )
-}
