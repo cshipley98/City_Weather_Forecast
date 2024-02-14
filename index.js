@@ -33,3 +33,30 @@ var formSub,itHandler = function(event){
     }
 }
 
+// get daily weather temp, wind, humidity
+var getDailyWeather = function(cityName){
+    // format weather api url
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=" + apiKey;
+
+    //make a request to get data from url 
+    fetch(apiUrl)
+        .then(function(response){
+            // successful response
+            if (response.ok){
+                response.json().then(function(data){
+
+                    //add city name and data to header
+                    var currentDate = new Date(data.dt*1000).toLocaleDateString();
+                    citySearchName.textConetnt =cityName + '' + currentDate;
+
+                    //add weather icon next to name in header
+                    weatherIcon = document.querySelector("#weather-icon")
+                    weatherIcon.src = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
+                }
+                
+                )
+            }
+        }
+        
+        )
+}
