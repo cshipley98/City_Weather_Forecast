@@ -96,4 +96,6 @@ var getDailyWeather = function(cityName){
                 })}
                 
                 )});
-            }
+            }})
+        }
+        
