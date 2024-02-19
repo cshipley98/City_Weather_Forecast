@@ -92,15 +92,69 @@ var getDailyWeather = function(cityName){
                                 else {
                                     UVindex.classList.add("bg-danger", "text-ligjt", "p-1");
                                 }
-                })}
+                            })}
                 
                 )});
-            }})
-        }
+            }
+        
                 // response unsuseccful
         else{
             alert("Error: did not recognize City");
         }
+    })
         .catch(function(Error){
             alert("Unable to connect to Weather.com")
         })
+};
+
+                                    // forecast weather data
+                                    var getForecastWeather = function(cityName){
+                                        var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey;
+
+                                        fetch(apiUrl).then(function(response){
+                                            response.json().then(function(data){
+
+                                                
+                                                        // clear historical data
+            forecastWeather.innerHTML = "";
+
+            // loop through hourly forecast, adding 8 because forecast comes every 3 hours 
+            for (var i = 1; i < data.list.length; i+=8){
+
+                // create div element for forecast weather 
+                var forecastEl = document.createElement("div");
+                forecastEl.classList.add("weather-card");
+
+                // create h5 element for date 
+                var dateForecast = document.createElement("h5");
+                dateForecast.textContent = new Date(data.list[i].dt*1000).toLocaleDateString();
+
+                // create img element for weather icon
+                var iconForecast = document.createElement("img");
+                iconForecast.src = "https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png";
+
+                // create p element for temperature
+                var tempertaureForecast = document.createElement("p");
+                tempertaureForecast.innerHTML ="Temperature: " + k2f(data.list[i].main.temp) + "&#176;" + "F";
+                
+                // create p element for humidity 
+                var humidityForecast= document.createElement("p");
+                humidityForecast.innerHTML = "Humidity: " + data.list[i].main.humidity + "%";
+
+                // create p element for windspeed 
+                var windForecast = document.createElement("p");
+                windForecast.innerHTML = "Wind Speed: " + data.list[i].wind.speed + " MPH";
+
+                // append date, weather icon temperature, wind speed, & humidity to forecastweather div 
+                forecastEl.append(dateForecast);
+                forecastEl.append(iconForecast);
+                forecastEl.append(tempertaureForecast);
+                forecastEl.append(windForecast);
+                forecastEl.append(humidityForecast);
+
+                // append forecast weather el to forecast weather div 
+                forecastWeather.append(forecastEl);
+            }
+        })
+    })
+};
