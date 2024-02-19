@@ -107,15 +107,15 @@ var getDailyWeather = function(cityName){
         })
 };
 
-                                    // forecast weather data
-                                    var getForecastWeather = function(cityName){
-                                        var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey;
+                         // forecast weather data
+                        var getForecastWeather = function(cityName){
+                        var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey;
 
-                                        fetch(apiUrl).then(function(response){
-                                            response.json().then(function(data){
+                        fetch(apiUrl).then(function(response){
+                        response.json().then(function(data){
 
                                                 
-                                                        // clear historical data
+                        // clear historical data
             forecastWeather.innerHTML = "";
 
             // loop through hourly forecast, adding 8 because forecast comes every 3 hours 
@@ -158,3 +158,8 @@ var getDailyWeather = function(cityName){
         })
     })
 };
+
+                //function to load weather from past search
+                var cityClickerHandler = function(event){
+                    
+                }
