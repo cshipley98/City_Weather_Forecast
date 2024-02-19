@@ -161,5 +161,7 @@ var getDailyWeather = function(cityName){
 
                 //function to load weather from past search
                 var cityClickerHandler = function(event){
-                    
+                var cityName = event.target.textConetnt;
+                getForecastWeather(cityName);
+                getDailyWeather   
                 }
