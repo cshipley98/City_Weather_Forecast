@@ -80,7 +80,6 @@ var getDailyWeather = function(cityName){
 
                                 //remove any previous class
                                 UVindex.className = '';
-
                                 //uv index is favorable, show green
                                 if (data[0].value < 4){
                                     UVindex.classList.add("bg-success", "text-light", "p-1");
@@ -98,4 +97,10 @@ var getDailyWeather = function(cityName){
                 )});
             }})
         }
-        
+                // response unsuseccful
+        else{
+            alert("Error: did not recognize City");
+        }
+        .catch(function(Error){
+            alert("Unable to connect to Weather.com")
+        })
