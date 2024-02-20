@@ -180,6 +180,18 @@ var getDailyWeather = function(cityName){
                         cities.push(cityName);
                         localStorage.setItem("cities", JSON.stringify(cities));
                     }
-                    
-                    
-                }
+                  
+                    // add searched cities to list
+                    cityList.innerHTML = "";
+
+                    for (var i = 0; i < cities.length; i++){
+                        var city = cities[i];
+                        var button = document.createElement("button");
+                        button.textContent = city;
+                        button.classList.add('btn');
+                        cityList.appendChild(button);
+
+                        button.addEventListener('click', cityClickerHandler);
+                    }
+                };
+                
