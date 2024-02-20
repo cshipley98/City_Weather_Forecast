@@ -158,10 +158,28 @@ var getDailyWeather = function(cityName){
         })
     })
 };
-
+               
                 //function to load weather from past search
                 var cityClickerHandler = function(event){
                 var cityName = event.target.textConetnt;
                 getForecastWeather(cityName);
-                getDailyWeather   
+                getDailyWeather  (cityName);
+                
+            };
+
+                //make an array for searched cities
+                let cities = JSON.parse(localStorage.getItem(cities));
+
+                //store searches to local storage  
+                var saveSearch = function(){
+
+                    //get city name entered 
+                    var cityName = cityNameInput.value.trim();
+
+                    if(cities.indexOf(cityName) == -1){
+                        cities.push(cityName);
+                        localStorage.setItem("cities", JSON.stringify(cities));
+                    }
+                    
+                    
                 }
