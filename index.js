@@ -195,3 +195,8 @@ var getDailyWeather = function(cityName){
                     }
                 };
                 
+                    //function to clear history from local storage
+                    clearHistoryBtn.addEventListener("click", function(){
+                            localStorage.clear();
+                            cities = [];       
+                    });
