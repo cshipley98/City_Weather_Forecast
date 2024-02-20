@@ -200,3 +200,12 @@ var getDailyWeather = function(cityName){
                             localStorage.clear();
                             cities = [];       
                     });
+
+                    // function to convert kelvin to ferinheight
+                        var k2f = function(k){
+                        return Math.floor((k - 273.15) * 1.8 + 32)
+                };
+
+
+                        // add event listeners to submit button
+                        searchBtn.addEventListener("click", formSubmitHandler);
